@@ -1,25 +1,30 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../assets/css/index.css';
 
 // Importación de logos de las universidades
 import iujoLogo from '../assets/img/iujo.png';
 import uclaLogo from '../assets/img/ucla.jpeg';
-import campesinaLogo from '../assets/img/campesina.jpeg';
+import campesinaLogo from '../assets/img/ucvag.png';
 import luterkingLogo from '../assets/img/luterking.png';
-import ferminLogo from '../assets/img/fermin.jpeg';
-import simonLogo from '../assets/img/simon.jpeg';
+import ferminLogo from '../assets/img/LOGO-FERMIN-TORO-.png';
+import simonLogo from '../assets/img/simonrodriguez.png';
 import unefaLogo from '../assets/img/unefa.png';
 import unesLogo from '../assets/img/unes.webp';
 import unexpoLogo from '../assets/img/unexpo.png';
 import upelLogo from '../assets/img/upel.png';
 import uptaebLogo from '../assets/img/uptaeb.png';
-import yacambuLogo from '../assets/img/yacambu.jpeg';
+import yacambuLogo from '../assets/img/yacambu.png';
 
+//Importacion de logo de las instituciones
 import Logo from '../assets/img/logoo.png'
 import Fvv from '../assets/img/fvv.png'
 import Fedeu from '../assets/img/fevedeu.png'
+import Idel from '../assets/img/idel2.png'
+import Fundela from '../assets/img/fundela.png'
+import Imderi from '../assets/img/imdri.png'
 
 export default function LPUIndex() {
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
@@ -38,7 +43,7 @@ export default function LPUIndex() {
         { name: 'Instituto Universitario Jesús Obrero', logo: iujoLogo },
         { name: 'Universidad Centroccidental Lisandro Alvarado', logo: uclaLogo },
         { name: 'Universidad Campesina de Venezuela Argimiro Gabaldón', logo: campesinaLogo },
-        { name: 'Universidad Martin Luter King', logo: luterkingLogo },
+        { name: 'Universidad Nacional Experimental de Lara "Martin Luther King"', logo: luterkingLogo },
         { name: 'Universidad Fermín Toro', logo: ferminLogo },
         { name: 'Universidad Simón Rodríguez', logo: simonLogo },
         { name: 'Universidad Nacional Experimental de las Fuerzas Armadas', logo: unefaLogo },
@@ -48,6 +53,15 @@ export default function LPUIndex() {
         { name: 'Universidad Politécnica Territorial del estado Lara Andrés Eloy Blanco', logo: uptaebLogo },
         { name: 'Universidad Yacambú', logo: yacambuLogo },
     ];
+
+    const insti = [
+        { name: 'Federacion Venezolana de Voleibol', logo: Fvv },
+        { name: 'Federacion Venezolana Deporitva de Educacion Univeritaria', logo: Fedeu },
+        { name: 'Instituto de Deportes del Estado Lara', logo: Idel },
+        { name: 'Fundación para el Deporte del Estado Lara', logo: Fundela },
+        { name: 'Instituto Municipal del Deporte y Recreación de Iribarren', logo: Imderi },
+        { name: 'Liga Polidevortiva Uviversitaria del Estado Lara', logo: Logo }
+    ]
 
     // Rotación automática de fotos cada 5 segundos
     useEffect(() => {
@@ -63,9 +77,7 @@ export default function LPUIndex() {
             <header className="lpu-header">
                 <div className="header-content">
                     <div className="logo-section">
-                        <img src={Logo} alt="LPU Logo" className="lpu-logo" style={{width:'100px'}} />
-                        <img src={Fedeu} alt="LPU Logo" className="lpu-logo" style={{width:'100px'}} />
-                        <img src={Fvv} alt="FVV Logo" className="fvv-logo" style={{width:'100px'}} />
+                        <img src={Logo} alt="LPU Logo" className="lpu-logo" style={{ width: 'clamp(50px, 8vw, 100px)'}} />
                     </div>
                     <nav className="nav-links">
                         <a href="#home" className="nav-link">Inicio</a>
@@ -73,10 +85,10 @@ export default function LPUIndex() {
                         <a href="#universidades" className="nav-link">Universidades</a>
                         <a href="https://portafolio-9kz.pages.dev/" target="_blank" rel="noopener noreferrer" className="nav-link">Contacto</a>
                     </nav>
-                    <button className="login-btn">
+                    <Link className="login-btn" to='/login'>
                         <i className="fa fa-user"></i>
                         <span>Login</span>
-                    </button>
+                    </Link>
                 </div>
             </header>
 
@@ -128,6 +140,30 @@ export default function LPUIndex() {
                                         <img src={university.logo} alt={university.name} className="university-logo" />
                                     </div>
                                     <p className="university-name">{university.name}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Galería de Identidades */}
+            <section className="universities-section" id="universidades">
+                <div className="section-header">
+                    <h2 className="section-title">Instituciones</h2>
+                    <p className="section-subtitle">Conoce las instituciones que componen nuestra liga</p>
+                </div>
+
+                <div className="carousel-container">
+                    <div className="carousel-track">
+                        {/* Duplicamos los items para efecto infinito */}
+                        {[...insti, ...insti].map((inst, index) => (
+                            <div key={index} className="carousel-item">
+                                <div className="university-card">
+                                    <div className="university-logo-wrapper">
+                                        <img src={inst.logo} alt={inst.name} className="university-logo" />
+                                    </div>
+                                    <p className="university-name">{inst.name}</p>
                                 </div>
                             </div>
                         ))}

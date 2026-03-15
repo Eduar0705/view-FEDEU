@@ -55,12 +55,11 @@ export default function LPUIndex() {
     ];
 
     const insti = [
-        { name: 'Federacion Venezolana de Voleibol', logo: Fvv },
         { name: 'Federacion Venezolana Deporitva de Educacion Univeritaria', logo: Fedeu },
         { name: 'Instituto de Deportes del Estado Lara', logo: Idel },
         { name: 'Fundación para el Deporte del Estado Lara', logo: Fundela },
         { name: 'Instituto Municipal del Deporte y Recreación de Iribarren', logo: Imderi },
-        { name: 'Liga Polidevortiva Uviversitaria del Estado Lara', logo: Logo }
+        { name: 'Liga Polideportiva Uviversitaria del Estado Lara', logo: Logo }
     ]
 
     // Rotación automática de fotos cada 5 segundos

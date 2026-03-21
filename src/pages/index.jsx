@@ -20,11 +20,17 @@ import yacambuLogo from '../assets/img/yacambu.png';
 
 //Importacion de logo de las instituciones
 import Logo from '../assets/img/logoo.png'
-import Fvv from '../assets/img/fvv.png'
 import Fedeu from '../assets/img/fevedeu.png'
 import Idel from '../assets/img/idel2.png'
 import Fundela from '../assets/img/fundela.png'
 import Imderi from '../assets/img/imdri.png'
+
+// Importación de fotos para la galería
+import photo1 from '../assets/img/i/1.jpeg';
+import photo2 from '../assets/img/i/2.jpeg';
+import photo3 from '../assets/img/i/3.jpeg';
+import photo4 from '../assets/img/i/4.jpeg';
+import photo5 from '../assets/img/i/5.jpeg';
 
 export default function LPUIndex() {
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
@@ -33,9 +39,11 @@ export default function LPUIndex() {
     const galleryPhotos = [
         'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&h=600&fit=crop',
         'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=600&fit=crop',
-        'https://plus.unsplash.com/premium_photo-1676634832558-6654a134e920?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZGVwb3J0ZXN8ZW58MHx8MHx8fDA%3D',
-        'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZGVwb3J0ZXN8ZW58MHx8MHx8fDA%3D',
-        'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVwb3J0ZXN8ZW58MHx8MHx8fDA%3D',
+        photo1,
+        photo2,
+        photo3,
+        photo4,
+        photo5,
     ];
 
     // Logos de universidades
@@ -76,16 +84,17 @@ export default function LPUIndex() {
             <header className="lpu-header">
                 <div className="header-content">
                     <div className="logo-section">
-                        <img src={Logo} alt="LPU Logo" className="lpu-logo" style={{ width: 'clamp(50px, 8vw, 100px)'}} />
+                        <img src={Logo} alt="LPU Logo" className="lpu-logo" style={{ width: 'clamp(50px, 8vw, 100px)' }} />
                     </div>
                     <nav className="nav-links">
                         <a href="#home" className="nav-link">Inicio</a>
+                        <Link to="/noticias" className="nav-link">Noticias</Link>
                         <a href="#competiciones" className="nav-link">Competiciones</a>
                         <a href="#universidades" className="nav-link">Universidades</a>
                         <a href="https://portafolio-9kz.pages.dev/" target="_blank" rel="noopener noreferrer" className="nav-link">Contacto</a>
                     </nav>
                     <Link className="login-btn" to='/login'>
-                        <i className="fa fa-user"></i>
+                        <i className="fa-solid fa-user"></i>
                         <span>Login</span>
                     </Link>
                 </div>

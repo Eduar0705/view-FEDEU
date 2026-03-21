@@ -2,16 +2,17 @@ import Logo from '../assets/img/logoo.png'
 import { useState } from 'react'
 import Swal from 'sweetalert2'
 import { Link, useNavigate } from 'react-router-dom'
+import loginService from '../service/login.service'
 import '../assets/css/login.css'
 
 
-export default function Login(){
+export default function Login() {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
-    const success = (ms)=>{
+    const success = (ms) => {
         Swal.fire({
             icon: 'success',
             title: 'Login Exitoso',
@@ -20,7 +21,7 @@ export default function Login(){
         })
     }
 
-    const error = (ms)=>{
+    const error = (ms) => {
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -30,19 +31,25 @@ export default function Login(){
     }
 
 
-    function handleLogin(e){
+    async function handleLogin(e) {
         e.preventDefault();
-        if(username === ''){
+        if (username === '') {
             error('Ingrese el usuario')
             return
         }
-        if(password === ''){
+        if (password === '') {
             error('Ingrese la contraseña')
             return
         }
 
-        success('Bienvenido')
-        navigate('/home')
+        try {
+            const response = await loginService.login(username, password)
+            const nombre = response.user?.nombre || response.nombre || username;
+            success(`Bienvenido ${nombre}`)
+            navigate('/home')
+        } catch (err) {
+            error(err.message || "Error al iniciar sesión")
+        }
     }
 
     const togglePasswordVisibility = () => {
@@ -58,9 +65,9 @@ export default function Login(){
                     <div className="input-container">
                         <label>Usuario:</label>
                         <input type="text" id='username' name='username'
-                        maxLength={15} placeholder='@usuario'
-                        onChange={(e) => setUsername(e.target.value)}
-                        value={username}
+                            maxLength={15} placeholder='@usuario'
+                            onChange={(e) => setUsername(e.target.value)}
+                            value={username}
                         />
                     </div>
 
@@ -68,10 +75,10 @@ export default function Login(){
                         <label>Clave:</label>
                         <div className="password-input-wrapper">
                             <input id='password' name='password'
-                            maxLength={15} placeholder='*********'
-                            type={showPassword ? 'text' : 'password'}
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                                maxLength={15} placeholder='*********'
+                                type={showPassword ? 'text' : 'password'}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <button className="toggle-password" type="button" onClick={togglePasswordVisibility}>
                                 <i className={`fa ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
@@ -82,6 +89,7 @@ export default function Login(){
 
                     <div className="footer">
                         <a href="/">Volver</a>
+                        <a href="/registro">Registro</a>
                         <a href="#">Olvidaste tu clave?</a>
                     </div>
                 </form>
